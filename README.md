@@ -52,3 +52,4 @@ Run following command
 ```
 docker stack deploy -c docker-compose-stack.yml peanuts
 ```
+Test it same as above!
