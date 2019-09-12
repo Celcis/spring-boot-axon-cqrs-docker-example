@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+
+
+  axonserver:
+    image: celcin/axonserver
+    hostname: axonserver
+    environment:
+      - 2AXONSERVER_HOSTNAME=axonserver
+    networks:
+      - default
+    deploy:
+      replicas: 1
+    restart: always  
+
+  command-service:
+    image: celcin/command-svc
+    deploy:
+      replicas: 1
+    restart: always
+    ports:
+      - 8081:8080
+    networks:
+      - default
+
+
+
+
+  query-service:
+    image: celcin/query-svc
+    deploy:
+      replicas: 1
+    restart: always
+    ports:
+      - 8082:8080
+    networks:
+      - default
+
+networks:
+  default: 
