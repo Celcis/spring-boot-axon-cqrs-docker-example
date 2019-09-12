@@ -46,3 +46,10 @@ Oh, only 90...
 
 Enjoy your meal!
  
+## Deploying on Swarm
+
+Run following command
+```
+docker stack deploy -c docker-compose-stack.yml peanuts
+```
+Test it same as above!
