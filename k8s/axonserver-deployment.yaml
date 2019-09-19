@@ -3,7 +3,6 @@ kind: StatefulSet
 metadata:
   name: axonserver
   labels:
-    name: peanuts
     app: axonserver
 spec:
   serviceName: axonserver
@@ -34,9 +33,6 @@ spec:
           initialDelaySeconds: 5
           periodSeconds: 5
           timeoutSeconds: 1
-          env:
-          - name: AXONSERVER_HOSTNAME
-            value: axonserver
 ---
 apiVersion: v1
 kind: Service
@@ -51,7 +47,7 @@ spec:
     targetPort: 8024
   selector:
     app: axonserver
-  type: NodePort
+  type: LoadBalancer
 ---
 apiVersion: v1
 kind: Service
@@ -66,4 +62,4 @@ spec:
     targetPort: 8124
   clusterIP: None
   selector:
-    app: axonserve
+    app: axonserver
