@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: v1b
 kind: Pod
 metadata:
   name: query-service
@@ -10,9 +10,8 @@ spec:
   strategy: {}
   template:
     metadata:
-      creationTimestamp: null
       labels:
-        io.kompose.service: query-service
+        app: axonserver
     spec:
       containers:
       - image: celcin/query-svc
@@ -26,20 +25,18 @@ status: {}
 apiVersion: v1
 kind: Service
 metadata:
-  annotations:
-    kompose.cmd: kompose convert -f docker-compose.yml
-    kompose.version: 1.16.0 (0c01309)
-  creationTimestamp: null
-  labels:
-    io.kompose.service: query-service
   name: query-service
+  labels:
+    name: peanuts
+    app: axonserver
 spec:
   ports:
   - name: "8082"
     port: 8082
     targetPort: 8080
   selector:
-    io.kompose.service: query-service
+    labels:
+      app: axonserver
 status:
   loadBalancer: {}
 

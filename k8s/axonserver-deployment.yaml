@@ -3,6 +3,7 @@ kind: StatefulSet
 metadata:
   name: axonserver
   labels:
+    name: peanuts
     app: axonserver
 spec:
   serviceName: axonserver
