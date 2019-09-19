@@ -1,13 +1,10 @@
 apiVersion: extensions/v1beta1
-kind: Deployment
+kind: Pod
 metadata:
-  annotations:
-    kompose.cmd: kompose convert -f docker-compose.yml
-    kompose.version: 1.16.0 (0c01309)
-  creationTimestamp: null
-  labels:
-    io.kompose.service: query-service
   name: query-service
+  labels:
+  name: peanuts
+  app: axonserver
 spec:
   replicas: 1
   strategy: {}
@@ -25,3 +22,24 @@ spec:
         resources: {}
       restartPolicy: Always
 status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yml
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: query-service
+  name: query-service
+spec:
+  ports:
+  - name: "8082"
+    port: 8082
+    targetPort: 8080
+  selector:
+    io.kompose.service: query-service
+status:
+  loadBalancer: {}
+
