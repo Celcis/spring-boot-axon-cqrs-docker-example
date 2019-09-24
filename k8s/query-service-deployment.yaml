@@ -17,7 +17,6 @@ spec:
         name: query-service
         ports:
         - containerPort: 8080
-        resources: {}
       restartPolicy: Always
 status: {}
 ---
